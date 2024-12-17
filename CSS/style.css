@@ -1,0 +1,176 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #333;
+    padding: 0;
+    margin: 0;
+}
+
+.header-img {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+h1 {
+    flex-grow: 1;
+    margin: 0;
+    font-size: 2rem;
+    color: white;
+}
+
+#logo {
+    margin-right: 15px;
+    border-radius: 0 35px 35px 0;
+}
+
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    font-size: 1.5rem;
+}
+
+nav ul {
+    display: flex;
+    list-style-type: none;
+    justify-content: center;
+    color: white;
+}
+
+nav li {
+    margin: 0 2rem 1rem 2rem;
+    font-size: 1.5rem;
+}
+
+nav a {
+    color: inherit;
+    text-decoration: none;
+}
+
+nav a:visited {
+    color: inherit;
+}
+
+nav a:hover {
+    color: inherit;
+    text-decoration: underline;
+}
+
+.search-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+#search {
+    padding: 10px;
+    font-size: 16px;
+    margin-right: 5px;
+}
+
+#searchBtn {
+    padding: 5px;
+    font-size: 16px;
+    border-radius: 25%;
+}
+
+#genreFilter {
+    padding: 5px;
+    font-size: 15px;
+}
+
+#movieList {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+
+.movie-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid #ddd;
+    padding: 1rem;
+    margin: 1rem;
+    background-color: white;
+    border-radius: 10px;
+    text-align: center;
+    transition: transform 0.2s;
+    font-size: .7rem;
+    height: 350px;
+    position: relative;
+}
+
+.movie-card img {
+    max-width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+    padding: 0 10px;
+}
+
+.movie-card button {
+    padding: 5px 10px;
+    background-color: #0073e6;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+    width: 45%;
+}
+
+.movie-card button:hover {
+    background-color: #005bb5;
+}
+
+#modal.hidden {
+    display: none;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #f8f8f8;
+}
+
+footer svg {
+    width: 30px;
+    height: 30px;
+    margin: 0 10px;
+    fill: #555;
+    cursor: pointer;
+    transition: fill 0.3s;
+}
+
+footer svg:hover {
+    fill: #1da1f2;
+}
+
+footer a {
+    display: inline-block;
+    margin: 0 10px;
+    text-decoration: none;
+}
+  
+footer a svg {
+    transition: fill 0.3s;
+}
+  
+footer a:hover svg {
+    fill: #0073e6;
+} /* Makes the monster catalog into a card */
