@@ -20,7 +20,7 @@
         <nav>
             <ul>
                 <li><a href="#">Hem</a></li>
-                <li><a href="#">Favoriter</a></li>
+                <li><a href="#favorites">Favoriter</a></li>
                 <li><a href="#">Om</a></li>
                 <li><a href="#">Kontakt</a></li>
             </ul>
@@ -31,14 +31,6 @@
         <form id="searchForm">
             <input type="text" id="searchInput" placeholder="Sök en film..." required aria-label="Sök efter en film"/>
             <button id="searchBtn" aria-label="Tryck för att söka">Sök</button>
-            <select id="genreFilter" aria-label="Välj genre">
-                <option value="">Alla genrer</option>
-                <option value="Action">Action</option>
-                <option value="Komedi">Komedi</option>
-                <option value="Drama">Drama</option>
-                <option value="Romantik">Romantik</option>
-                <option value="Sc-Fi">Sc-Fi</option>
-            </select>
         </form>
     </section>
 
@@ -46,6 +38,7 @@
         <!--Filmkort skapas dynamiskt här-->
     </main>
 
+    <div id="modal-overlay" class="hidden"></div>
     <div id="modal" class="hidden">
         <!-- Detaljer om filmen -->
     </div>
