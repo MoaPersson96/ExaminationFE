@@ -12,25 +12,29 @@ body {
 }
 
 h1 {
-    /* flex-grow: 1; */
+    display: flex;
     margin: 0;
     font-size: 1.5rem;
     color: white;
+    align-items: center;
 }
 
 #logo {
     margin-right: 10px;
     border-radius: 0 35px 35px 0;
-    width: 50px;
+    width: 70px;
     height: auto;
 }
 
 
 header {
+    background-color: #444;
     display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
     flex-direction: column;
     align-items: center;
-    text-align: center;
+    padding: 10px 20px;
 }
 
 nav ul {
@@ -51,6 +55,8 @@ nav a {
     color: white;
     text-decoration: none;
     font-size: 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s;
 }
 
 nav a:visited {
@@ -64,33 +70,40 @@ nav a:hover {
 
 .search-section {
     display: flex;
-    justify-content: center;
     align-items: center;
     padding: 10px;
 }
 
 #searchForm {
+    display: flex;
     width: 100%;
     max-width: 300px;
 }
 
 #searchInput {
+    flex-grow: 1;
     width: 70%;
-    padding: 8px;
-    font-size: 14px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px 0 0 5px;
+    font-size: 1rem;
+    outline: none;
 }
 
 #searchBtn {
-    padding: 8px;
-    font-size: 14px;
-    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
 #movieList {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    padding: 10px;
-    gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    padding: 15px;
+    gap: 5px;
 }
 
 .movie-card {
@@ -99,10 +112,12 @@ nav a:hover {
     justify-content: space-between;
     background-color: white;
     border: 5px solid white;
-    border-radius: 5px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
     text-align: center;
     font-size: 0.8rem;
-    width: 170px;
+    width: 155px;
     position: relative;
     height: 100%;
     min-height: 300px;
@@ -122,11 +137,11 @@ nav a:hover {
     display: flex;
     justify-content: space-between;
     margin-top: auto;
-    padding: 5px;
+    padding: 0;
 }
 
 .info-btn, .favorite-btn {
-    padding: 5px;
+    padding: 3px;
     color: white;
     border: none;
     border-radius: 3px;
@@ -140,6 +155,10 @@ nav a:hover {
 
 .favorite-btn {
     background-color: #b50000;
+}
+
+#movieCount {
+    color: white;
 }
 
 #modal {
@@ -192,10 +211,45 @@ nav a:hover {
     display: block;
 }
 
+#errorModal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    z-index: 1000;
+}
+
+.modal-content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1001;
+}
+
+#errorModal-overlay.active,
+#modal-content.active {
+    display: block;
+}
+
+.hidden {
+    display: none;
+}
+
 footer {
     text-align: center;
     padding: 10px;
     background-color: #f8f8f8;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 footer svg {
@@ -205,6 +259,7 @@ footer svg {
     fill: #555;
     cursor: pointer;
     transition: fill 0.3s;
+    
 }
 
 footer svg:hover {
@@ -226,6 +281,10 @@ footer a:hover svg {
 }
 
 @media (min-width: 600px) {
+    header {
+        flex-wrap: nowrap;
+    }
+
     nav ul {
         flex-direction: row;
         justify-content: center;
@@ -234,18 +293,31 @@ footer a:hover svg {
     nav li {
         margin: 0 15px;
     }
+    
+    nav a {
+        font-size: 1.2rem;
+    }
 
     #movieList {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     }
 
     .movie-card {
         font-size: 1rem;
+        width: 170px;
+    }
+
+    .search-section {
+        display: flex;
+        justify-content: center;
+    }
+
+    footer {
+        width: auto;
     }
 }
 
 @media (min-width: 900px) {
-    
     #logo {
         margin-right: 15px;
         border-radius: 0 35px 35px 0;
@@ -255,46 +327,33 @@ footer a:hover svg {
     header {
         flex-direction: row;
         justify-content: space-between;
-        align-items: center;
+        align-items: flex-start;
         padding: 1rem;
     }
 
     h1 {
         display: flex;
         align-items: center;
-        margin: 0;
         font-size: 2rem;
-        color: white;
+    }
+
+    nav {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        margin-left: auto;
     }
 
     nav ul {
         display: flex;
         list-style-type: none;
         justify-content: center;
+        align-items: center;
     }
 
     nav li {
         margin: 0 1rem 1rem 1rem;
         font-size: 1.5rem;
-    }
-
-    .search-section {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 20px;
-    }
-
-    #search {
-        padding: 10px;
-        font-size: 16px;
-        margin-right: 5px;
-    }
-
-    #searchBtn {
-        padding: 5px;
-        font-size: 16px;
-        border-radius: 25%;
     }
 
     #movieList {
@@ -306,7 +365,7 @@ footer a:hover svg {
     .movie-card {
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        justify-content: space-around;
         border: 1px solid #ddd;
         padding: 1rem;
         margin: 1rem;
@@ -314,7 +373,7 @@ footer a:hover svg {
         border-radius: 10px;
         text-align: center;
         font-size: 0.7rem;
-        width: 200px;
+        width: 230px;
         height: 450px;
         position: relative;
     }
@@ -345,15 +404,5 @@ footer a:hover svg {
         padding: 5px 10px;
         font-size: 0.8rem;
         width: 45%;
-    }
-
-    footer {
-        padding: 20px;
-    }
-
-    footer svg {
-        width: 30px;
-        height: 30px;
-        margin: 0 10px;
     }
 }

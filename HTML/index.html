@@ -35,13 +35,23 @@
     </section>
 
     <main id="movieList">
-        <!--Filmkort skapas dynamiskt här-->
+      <!--Filmkort skapas dynamiskt här-->
     </main>
+    <p id="movieCount" class="hidden"></p>
 
     <div id="modal-overlay" class="hidden"></div>
     <div id="modal" class="hidden">
         <!-- Detaljer om filmen -->
     </div>
+
+    <div id="error-modal" class="hidden">
+      <div class="modal-content">
+        <h2>Fel</h2>
+        <p id="error-message"></p>
+        <button onclick="closeErrorModal()">Stäng</button>
+      </div>
+    </div>
+    <div id="errorModal-overlay" class="hidden"></div>
 
     <script src="/JS/script.js"></script>
     <footer>
