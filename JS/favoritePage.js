@@ -29,22 +29,23 @@ export async function showFavoriteMovie(movieID, movieList, API_URL) {
                 if (event.target && event.target.classList.contains('info-btn')) {
                     const movieID = event.target.getAttribute('data-movie-id');
                     showDetails(movieID);
+
+                    const movieCard = document.querySelector(`.movie-card[data-movie-id='${movieID}']`);
+                    if (movieCard) {
+                        movieCard.remove();
+                    }
                 }
             });
 
-
             const removeButton = movieList.querySelector(`.remove-btn[data-movie-id='${movieID}']`);
-
-            console.log("Hittade inte knappen: ", removeButton);
-
             if (removeButton) {
                 removeButton.addEventListener('click', () => {
                     console.log(`Ta bort film med ID: ${movieID}`);
                     removeFromFavorites(movieID);
-                    document.querySelector(`.movie-card[data-movie-id='${movieID}']`);
-                    if (movieCard) {
-                        movieCard.remove();
-                    }
+
+
+            console.log("Hittade inte knappen: ", removeButton);
+
                 });
             } else {
                 console.error("Ta bort-knappen hittades inte för film: ", movieID);

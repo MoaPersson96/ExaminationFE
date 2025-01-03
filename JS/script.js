@@ -91,7 +91,7 @@ export function closeDetailsModal() {
     modalOverlay.classList.remove("active");
 }
 
-document.getElementById("closeErrorButton").addEventListener("click", closeErrorModal);
+ document.getElementById("closeErrorButton").addEventListener("click", closeErrorModal);
 
 searchForm.addEventListener("submit", (event) => {
     event.preventDefault();
