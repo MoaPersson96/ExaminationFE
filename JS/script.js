@@ -41,7 +41,7 @@ async function fetchMovies(query = 'Star Wars', page = 1) {
         }
     } catch (error) {
         console.error("Fel vid hämtningen av filmdata: ", error);
-        showErrorModal(">Något gick fel vi hämtningen av data. Försök igen senare.");
+        showErrorModal("Något gick fel vi hämtningen av data. Försök igen senare.");
     }
 }
 
@@ -63,7 +63,7 @@ function renderMovies(movies) {
             <h2>${movie.Title}</h2>
             <div class="button-container">
                 <button class="info-btn" onclick="showDetails('${movie.imdbID}')">Mer info</button>
-                <button class="favorite-btn" data-movie-id="${movie.imdbID}">Favoriter</button>
+                <button class="favorite-btn" data-movie-id="${movie.imdbID}">Favorit</button>
             </div>
         </div>
     `).join('');
@@ -96,6 +96,12 @@ export function closeDetailsModal() {
 searchForm.addEventListener("submit", (event) => {
     event.preventDefault();
     const query = searchInput.value.trim();
+
+    if (!query) {
+        showErrorModal("Ange ett giltigt sökord för att hitta filmer.")
+        return;
+    }
+
     fetchMovies(query);
 });
 
