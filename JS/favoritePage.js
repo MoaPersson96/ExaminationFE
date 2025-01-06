@@ -25,60 +25,36 @@ export async function showFavoriteMovie(movieID, movieList, API_URL) {
             `;
             movieList.insertAdjacentHTML("beforeend", movieCard);
 
-            movieList.addEventListener('click', (event) => {
-                if (event.target && event.target.classList.contains('info-btn')) {
-                    const movieID = event.target.getAttribute('data-movie-id');
-                    showDetails(movieID);
-
-                    const movieCard = document.querySelector(`.movie-card[data-movie-id='${movieID}']`);
-                    if (movieCard) {
-                        movieCard.remove();
-                    }
-                }
-            });
-
-            const removeButton = movieList.querySelector(`.remove-btn[data-movie-id='${movieID}']`);
-            if (removeButton) {
-                removeButton.addEventListener('click', () => {
-                    console.log(`Ta bort film med ID: ${movieID}`);
-                    removeFromFavorites(movieID);
-
-
-            console.log("Hittade inte knappen: ", removeButton);
-
-                });
-            } else {
-                console.error("Ta bort-knappen hittades inte för film: ", movieID);
-            }
-    } catch (error) {
-        console.error("Kunde inte hämta favorit filmer", error);
-        showErrorModal("Kunde inte hämta favoritfilmer");
-    }
-}
-
-document.getElementById("movieList").addEventListener('click', (event) => {
-    if (event.target && event.target.classList.contains('remove-btn')) {
-        const movieID = event.target.getAttribute('data-movie-id');
-        console.log(`Ta bort film med ID: ${movieID}`);
-        removeFromFavorites(movieID);  // Ta bort filmen från favoriter
-        const movieCard = document.querySelector(`.movie-card[data-movie-id='${movieID}']`);
-        if (movieCard) {
-            movieCard.remove(); // Ta bort kortet från UI
+            
+        } catch (error) {
+            console.error("Kunde inte hämta favorit filmer", error);
+            showErrorModal("Kunde inte hämta favoritfilmer");
         }
     }
-});
-
+    
+    
 document.addEventListener("DOMContentLoaded", () => {
     const movieList = document.getElementById("movieList");
     loadFavorites(movieList, API_URL, showFavoriteMovie);
 });
 
-// document.addEventListener("DOMContentLoaded", () => {
-//     const movieList = document.getElementById("movieList");
+movieList.addEventListener('click', (event) => {
+    const target = event.target;
 
-//     if (movieList) {
-//         loadFavorites(movieList, API_URL, showFavoriteMovie);
-//     } else {
-//         console.error("movieList-elementet hittades inte.");
-//     }
-// });
+    if (target.classList.contains('info-btn')) {
+        const movieID = target.getAttribute('data-movie-id');
+        showDetails(movieID);
+    }
+
+    if (target.classList.contains('remove-btn')) {
+        const movieID = target.getAttribute('data-movie-id');
+        console.log(`${movieID} har tagits bort från din favoritlista.`)
+        showErrorModal(`${movieID} har tagits bort från din favoritlista`)
+        removeFromFavorites(movieID);
+
+        const movieCard = target.closest('.movie-card');
+        if (movieCard) {
+            movieCard.remove();
+        }
+    }
+});
