@@ -62,7 +62,7 @@ function renderMovies(movies) {
             <img src="${movie.Poster}" alt="${movie.Title}" />
             <h2>${movie.Title}</h2>
             <div class="button-container">
-                <button class="info-btn" onclick="showDetails('${movie.imdbID}')">Mer info</button>
+                <button class="info-btn" data-imdb-id="${movie.imdbID}">Mer info</button>
                 <button class="favorite-btn" data-movie-id="${movie.imdbID}">Favorit</button>
             </div>
         </div>
@@ -70,7 +70,7 @@ function renderMovies(movies) {
     
     document.querySelectorAll('.info-btn').forEach(button => {
         button.addEventListener('click', (event) => {
-            const imdbID = event.target.dataset.imdbId;
+            const imdbID = button.dataset.imdbId;
             showDetails(imdbID);
         });
     });
